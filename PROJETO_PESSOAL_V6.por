@@ -1,10 +1,11 @@
 programa{
 
-  inclua biblioteca Arquivos --> a 
+  inclua biblioteca Arquivos --> a
+  inclua biblioteca Tipos --> t 
 funcao inicio() {
 	const inteiro MAX_ITENS = 50
     cadeia lista_compras[MAX_ITENS]
-    real quantidades[MAX_ITENS]
+   real quantidades[MAX_ITENS]
     real precos[MAX_ITENS]
     inteiro total_itens = 0
     real total_gasto = 0.0
@@ -16,7 +17,7 @@ funcao inicio() {
         escreva("1. Ver produtos\n")
         escreva("2. Ver minha lista\n")
         escreva("3. Calcular total\n")
-        escreva("4. salva arquivo .txt")
+        escreva("4. salva arquivo .txt\n")
         escreva("5. Sair\n")
         escreva("Escolha: ")
         leia(op)
@@ -34,7 +35,7 @@ funcao inicio() {
                 escreva("2. Areia: R$ 115.00 (m³)\n")
                 escreva("3. Argamassa: R$ 20.00 (saco 20kg)\n")
                 escreva("4. Cerâmica: R$ 35.00 (m²)\n")
-                escreva("5. Tijolos: R$ 1.50 (milheiro)\n")  // ALTERADO PARA R$1.50
+                escreva("5. Tijolos: R$ 1.50 (milheiro)\n")  
                 
                 // Selecionar produto
                 inteiro produto_escolhido
@@ -73,9 +74,11 @@ funcao inicio() {
                 
                 // Ler quantidade e calcular preço
                 escreva("Digite a quantidade de ", nome_produto, ": ")
+             
                 leia(quantidades[total_itens])
-                
+               
                 // Armazenar informações
+                  
                 lista_compras[total_itens] = nome_produto
                 precos[total_itens] = preco_unitario * quantidades[total_itens]
                 
@@ -90,6 +93,7 @@ funcao inicio() {
                     escreva("\n=== SUA LISTA DE COMPRAS ===\n")
                     para(inteiro i = 0; i < total_itens; i++) {
                         escreva(i+1, ". ", lista_compras[i], ": ", quantidades[i], " un - R$ ", precos[i], "\n")
+                          cadeia quantidade_cadeia t.real_para_cadeia(quantidades[MAX_ITENS])
                     }
                 }
                 pare
@@ -102,7 +106,19 @@ funcao inicio() {
                 escreva("\nTotal gasto: R$ ", total_gasto, "\n")
                 pare
            caso 4:
-           
+          inteiro arquivo= a.abrir_arquivo("./lista.txt", a.MODO_ESCRITA)
+          inteiro i
+          
+          para(i=0;i<MAX_ITENS;i++){
+          	// real rl  t.real_para_cadeia(quantidades[i])
+          	
+          	 cadeia quantidade_cadeia t.real_para_cadeia(quantidades[i])
+          	 a.escrever_linha(lista_compras[i], arquivo)
+          	
+          }
+               a.fechar_arquivo(arquivo)
+          	pare
+        
             caso 5:
                 escreva("Saindo...\n")
                 pare
@@ -118,9 +134,9 @@ funcao inicio() {
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 3896; 
+ * @POSICAO-CURSOR = 4372; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {lista_compras, 6, 11, 13}-{quantidades, 7, 9, 11}-{precos, 8, 9, 6};
+ * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
